@@ -5,7 +5,7 @@ namespace Jox.UiPathCoverageReport
 {
     class CsvReport : IReport
     {
-        public string Separator { get; set; }
+        public string Separator { get; set; } = ";";
 
         public void Print(Tree tree, TextWriter output) => PrintNode(tree, output, prefix: "");
 

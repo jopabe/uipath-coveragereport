@@ -27,6 +27,7 @@ namespace Jox.UiPathCoverageReport
 
         private void AddFile(FileInfo mainFile)
         {
+            var projectDir = mainFile.Directory;
             if (mainFile.Name.Equals("project.json", StringComparison.OrdinalIgnoreCase))
             {
                 // JSON parsing would be better but requires additional dll
@@ -42,10 +43,10 @@ namespace Jox.UiPathCoverageReport
                 }
             }
 
-            AddUiPathXaml(mainFile);
+            AddUiPathXaml(mainFile, projectDir);
         }
 
-        private void AddUiPathXaml(FileInfo xamlFile)
+        private void AddUiPathXaml(FileInfo xamlFile, DirectoryInfo projectDir)
         {
             var doc = XDocument.Load(xamlFile.FullName);
             var controls = doc.Descendants("{http://schemas.uipath.com/workflow/activities}Target");
@@ -62,7 +63,7 @@ namespace Jox.UiPathCoverageReport
                 if (AddComment($"including {externalFileName}"))
                 {
                     // only process external file the first time we see it
-                    AddUiPathXaml(new FileInfo(Path.Combine(xamlFile.DirectoryName, externalFileName)));
+                    AddUiPathXaml(new FileInfo(Path.Combine(projectDir.FullName, externalFileName)), projectDir);
                 }
             }
         }
