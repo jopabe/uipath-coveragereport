@@ -10,7 +10,7 @@ class Program
         {
             if (args.Length == 0)
             {
-                Console.Error.WriteLine("Syntax error.\r\nUsage: {0} [uipath-test.xaml]", Path.GetFileName(Assembly.GetExecutingAssembly().Location));
+                Console.Error.WriteLine("Syntax error.\r\nUsage: {0} [uipath-test.xaml|uipath-project.json] [-t] [-c]", Path.GetFileName(Assembly.GetExecutingAssembly().Location));
                 return;
             }
             (var files, var reports) = ParseCommandLine(args);
@@ -24,6 +24,7 @@ class Program
         {
             if (args.Length == 1)
             {
+                // support dragging and dropping a UiPath project or file on this executable
                 Console.Error.WriteLine("Press any key to exit");
                 Console.Read();
             }
@@ -45,12 +46,14 @@ class Program
                 case "/csv":
                 case "-c":
                 case "-csv":
+                case "--csv":
                     if (!reports.Contains(csvReport)) reports.Add(csvReport);
                     continue;
                 case "/t":
                 case "/tree":
                 case "-t":
                 case "-tree":
+                case "--tree":
                     if (!reports.Contains(treeReport)) reports.Add(treeReport);
                     continue;
             }
