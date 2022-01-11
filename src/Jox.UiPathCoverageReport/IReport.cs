@@ -1,9 +1,7 @@
-﻿using System.IO;
+﻿namespace Jox.UiPathCoverageReport;
 
-namespace Jox.UiPathCoverageReport
+interface IReport
 {
-   interface IReport
-    {
-        void Print(Tree tree, TextWriter output);
-    }
+    void Print(Tree tree, TextWriter output);
 }
+
