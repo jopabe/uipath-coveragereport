@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
-    <!-- implicitly added but unavailable in net48 without NuGet dependency -->
+    <!-- implicitly added but unavailable in .NET Framework without NuGet dependency -->
     <Using Remove="System.Net.Http" />
   </ItemGroup>
 
