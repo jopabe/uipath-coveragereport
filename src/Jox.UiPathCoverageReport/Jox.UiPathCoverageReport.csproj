@@ -5,6 +5,19 @@
     <TargetFrameworks>net6.0;net48</TargetFrameworks>
     <LangVersion>10</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <Authors>Joris Patroons</Authors>
+    <Company>Jo Kruis</Company>
+    <Description>Summarize the applications, windows and controls referenced in UiPath projects</Description>
+    <Version Condition=" '$(Version)' == '' ">0.99.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
+    <PackAsTool>true</PackAsTool>
+    <PackageId>Jox.UiPathCoverageReport</PackageId>
+    <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+    <PackageTags>UiPath</PackageTags>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
